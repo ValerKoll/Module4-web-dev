@@ -1,5 +1,7 @@
 
-# Single Table Design Recipe Template
+# Database/Tables Design Recipe
+Database: music_library2 <br>
+Database: music_library2_test <br>
 
 ## 1. Extract nouns from the user stories or specification
 
@@ -14,9 +16,6 @@ User: "I want insert a new entry in the table albums"
 
 ## 2. Set Table Name and Columns
 
-Database: music_library <br>
-status:   exist
-
 | table `albums`        | Properties              |
 | --------------------- | ----------------------- |
 |                       | `title`                 |
@@ -24,20 +23,21 @@ status:   exist
 |                       | `artist_id`             |
 
 
+
+
 ## 3. column types
 
 [Here's a full documentation of PostgreSQL data types](https://www.postgresql.org/docs/current/datatype.html).
 
-```
 id: SERIAL
 title: VARCHAR(255)
-release_year: INTEGER
-artist_id:  (FK) INTEGER
-```
+release_year: int
+artist_id: int
+
+
 
 ## 4. SQL
 
-n/a
 ```sql
 CREATE TABLE albums (
   id SERIAL PRIMARY KEY,
@@ -45,12 +45,16 @@ CREATE TABLE albums (
   release_year INTEGER
   artist_id INTEGER
 );
+
 ```
 
 ## 5. table (if needs)
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 database_name < music_library2.sql
 ```
 ## 6. seed the table (if needs) 
-n/a
+
+"""
+call seed('file.sql')
+"""
